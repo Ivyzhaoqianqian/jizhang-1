@@ -5,7 +5,7 @@ $font-song:Georgia, "Nimbus Roman No9 L", "Songti SC", "Noto Serif CJK SC", "Sou
 $color-highlight:#f00;
 
 //placeholder
-%x{
+%clearFix{
    &::after {
       content: "";
       clear: both;
