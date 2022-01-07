@@ -14,9 +14,7 @@ body {
   line-height: 1.5;
   font-family: $font-hei;
   font-size: 16px;
-}
-
-#app {
+  background-color: #f5f5f5;
 }
 
 #nav {
