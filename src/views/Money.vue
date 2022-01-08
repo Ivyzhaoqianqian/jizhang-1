@@ -16,16 +16,18 @@ import Vue from "vue";
 import { Component, Watch } from "vue-property-decorator";
 // import recordListModel from "@/models/recordListModel";
 // import tagListModel from "@/models/tagListModel";
-import model from "@/model";
+import model from "@/models/recordListModal";
 import RecordItem from "@/custom";
+import tagListModel from "@/models/tagListModel";
 
 const recordList = model.fetch();
+const tagList = tagListModel.fetch();
 
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
-  tags = ["衣", "食", "住", "行"];
+  tags = tagList;
   recordList: RecordItem[] = JSON.parse(
     window.localStorage.getItem("recordList") || "[]"
   );
