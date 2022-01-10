@@ -1,11 +1,16 @@
 <template>
   <Layout>
-    <ol class="tags">
-      <li v-for="tag in tags" :key="tag">
-        <span>{{ tag }}</span>
+    <div class="tags">
+      <router-link
+        class="tag"
+        v-for="tag in tags"
+        :key="tag.id"
+        :to="`/labels/edit/${tag.id}`"
+      >
+        <span>{{ tag.name }}</span>
         <Icon name="right" />
-      </li>
-    </ol>
+      </router-link>
+    </div>
     <div class="createTag-wrapper">
       <button class="createTag" @click="createTag">新建标签</button>
     </div>
@@ -16,6 +21,7 @@
 import tagListModel from "@/models/tagListModel";
 import Vue from "vue";
 import Component from "vue-class-component";
+
 tagListModel.fetch();
 
 @Component
@@ -62,7 +68,7 @@ export default class Labels extends Vue {
   border: none;
   height: 40px;
   padding: 0 16px;
-  &wrapper {
+  &-wrapper {
     text-align: center;
     padding: 16px;
     margin-top: 44-16px;
