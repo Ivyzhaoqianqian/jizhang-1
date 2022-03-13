@@ -1,30 +1,36 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button @click="create">新增标签</button>
+      <button @click="createTag">新增标签</button>
     </div>
     <ul class="current">
       <li
-        v-for="tag in dataSource"
+        v-for="tag in tagList"
         :key="tag.id"
         :class="{ selected: selectedTags.indexOf(tag) >= 0 }"
         @click="toggle(tag)"
       >
-        {{ tag }}
+        {{ tag.name }}
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import TagHelper from "@/mixins/TagHelper";
+import { mixins } from "vue-class-component";
+import { Component } from "vue-property-decorator";
 
 @Component
-export default class Tags extends Vue {
-  @Prop() readonly dataSource: string[] | undefined;
+export default class Tags extends mixins(TagHelper) {
   selectedTags: string[] = [];
 
+  get tagList() {
+    return this.$store.state.tagList;
+  }
+  created() {
+    this.$store.commit("fetchTags");
+  }
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {
@@ -34,20 +40,10 @@ export default class Tags extends Vue {
     }
     this.$emit("update:value", this.selectedTags);
   }
-
-  create() {
-    const name = window.prompt("请输入标签名");
-    if (name === "") {
-      window.alert("标签名不能为空");
-    } else if (this.dataSource) {
-      this.$emit("update:dataSource", [...this.dataSource]);
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~@/assets/styles/helper.scss";
 .tags {
   flex-grow: 1;
   font-size: 14px;

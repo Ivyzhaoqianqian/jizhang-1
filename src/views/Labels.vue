@@ -18,29 +18,22 @@
 </template>
 
 <script lang="ts">
-import tagListModel from "@/models/tagListModel";
 import Vue from "vue";
-import Component from "vue-class-component";
+import { mixins } from "vue-class-component";
 import Button from "@/components/Button.vue";
-
-tagListModel.fetch();
+import TagHelper from "@/mixins/TagHelper";
+import { Component } from "vue-property-decorator";
 
 @Component({
   components: { Button },
 })
-export default class Labels extends Vue {
-  tags = tagListModel.data;
+export default class Labels extends mixins(TagHelper) {
+  get tag() {
+    return this.$store.state.tagList;
+  }
 
-  createTag() {
-    const name = window.prompt("请输出标签名");
-    if (name) {
-      const message = tagListModel.create(name);
-      if (message === "duplicated") {
-        window.alert("重复");
-      } else if (message === "success") {
-        window.alert("添加成功");
-      }
-    }
+  beforeCreate() {
+    this.$store.commit("fetchTags");
   }
 }
 </script>

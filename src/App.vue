@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div id="app">
     <router-view />
   </div>
 </template>
+
+
 
 <style lang="scss">
 @import "~@/assets/styles/helper.scss";
@@ -15,18 +17,5 @@ body {
   font-family: $font-hei;
   font-size: 16px;
   background-color: #f5f5f5;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

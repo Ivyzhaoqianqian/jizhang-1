@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="notes">
+    <label class="formItem">
       <span class="name">{{ this.fieldName }}</span>
       <input
         type="text"
@@ -22,8 +22,6 @@ export default class FormItem extends Vue {
 
   @Prop({ required: true }) fieldName!: string;
   @Prop({}) placeholder?: string;
-
-  @Watch("value")
   onValueChanged(value: string) {
     this.$emit("update:value", value);
   }
@@ -31,8 +29,7 @@ export default class FormItem extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/assets/styles/helper.scss";
-.notes {
+.formItem {
   display: block;
   background: #f5f5f5;
   font-size: 14px;
