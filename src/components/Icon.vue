@@ -12,10 +12,9 @@ try {
 } catch (error) {
   console.log(error);
 }
-
 export default {
   props: ["name"],
-  name: "Icons",
+  name: "Icon",
 };
 </script>
 
@@ -23,7 +22,7 @@ export default {
 .icon {
   width: 1em;
   height: 1em;
-  vertical-align: -0.15;
+  vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
 }

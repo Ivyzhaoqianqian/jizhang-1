@@ -17,14 +17,13 @@
 </template>
 
 <script lang="ts">
-import TagHelper from "@/mixins/TagHelper";
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
 import { mixins } from "vue-class-component";
-import { Component } from "vue-property-decorator";
-
+import TagHelper from "@/mixins/TagHelper";
 @Component
 export default class Tags extends mixins(TagHelper) {
   selectedTags: string[] = [];
-
   get tagList() {
     return this.$store.state.tagList;
   }
@@ -45,24 +44,27 @@ export default class Tags extends mixins(TagHelper) {
 
 <style lang="scss" scoped>
 .tags {
-  flex-grow: 1;
+  background: white;
   font-size: 14px;
   padding: 16px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column-reverse;
   > .current {
     display: flex;
     flex-wrap: wrap;
     > li {
-      background: #d9d9d9;
+      $bg: #d9d9d9;
+      background: $bg;
       $h: 24px;
       height: $h;
       line-height: $h;
       border-radius: $h/2;
       padding: 0 16px;
       margin-right: 12px;
+      margin-top: 4px;
       &.selected {
-        background: darken($color: #d9d9d9, $amount: 50%);
+        background: darken($bg, 50%);
         color: white;
       }
     }
@@ -74,7 +76,7 @@ export default class Tags extends mixins(TagHelper) {
       border: none;
       color: #999;
       border-bottom: 1px solid;
-      padding: 0 3px;
+      padding: 0 4px;
     }
   }
 }

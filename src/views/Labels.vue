@@ -12,26 +12,24 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <Button class="createTag" @click="createTag">新建标签</Button>
+      <Button class="createTag" @click="createTag"> 新建标签 </Button>
     </div>
   </Layout>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { mixins } from "vue-class-component";
-import Button from "@/components/Button.vue";
-import TagHelper from "@/mixins/TagHelper";
 import { Component } from "vue-property-decorator";
-
+import Button from "@/components/Button.vue";
+import { mixins } from "vue-class-component";
+import TagHelper from "@/mixins/TagHelper";
 @Component({
   components: { Button },
 })
 export default class Labels extends mixins(TagHelper) {
-  get tag() {
+  get tags() {
     return this.$store.state.tagList;
   }
-
   beforeCreate() {
     this.$store.commit("fetchTags");
   }
@@ -58,7 +56,7 @@ export default class Labels extends mixins(TagHelper) {
   }
 }
 .createTag {
-  background-color: #767676;
+  background: #767676;
   color: white;
   border-radius: 4px;
   border: none;

@@ -20,16 +20,14 @@
 </template>
 
 <script lang="ts">
-import FormItem from "@/components/FormItem.vue";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import FormItem from "@/components/Money/FormItem.vue";
 import Button from "@/components/Button.vue";
-
 @Component({
   components: { Button, FormItem },
 })
 export default class EditLabel extends Vue {
-  $store: any;
   get currentTag() {
     return this.$store.state.currentTag;
   }
@@ -54,7 +52,6 @@ export default class EditLabel extends Vue {
       this.$store.commit("removeTag", this.currentTag.id);
     }
   }
-
   goBack() {
     this.$router.back();
   }
@@ -79,14 +76,14 @@ export default class EditLabel extends Vue {
     width: 24px;
     height: 24px;
   }
-  .form-wrapper {
-    background: white;
-    margin: top 8px;
-  }
-  .button-wrapper {
-    text-align: center;
-    padding: 16px;
-    margin-top: 44-16px;
-  }
 }
-</style>;
+.form-wrapper {
+  background: white;
+  margin-top: 8px;
+}
+.button-wrapper {
+  text-align: center;
+  padding: 16px;
+  margin-top: 44-16px;
+}
+</style>

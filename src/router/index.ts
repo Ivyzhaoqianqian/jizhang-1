@@ -11,20 +11,19 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/money',
+    redirect: '/money'
   },
-
   {
     path: '/money',
-    component: Money,
+    component: Money
   },
   {
     path: '/labels',
-    component: Labels,
+    component: Labels
   },
   {
     path: '/statistics',
-    component: Statistics,
+    component: Statistics
   },
   {
     path: '/labels/edit/:id',
@@ -32,8 +31,8 @@ const routes = [
   },
   {
     path: '*',
-    component: NotFound,
-  },
+    component: NotFound
+  }
 ];
 
 const router = new VueRouter({

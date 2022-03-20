@@ -1,11 +1,11 @@
-import createId from "@/lib/createId";
+import createId from '@/lib/createId';
 
 const localStorageKeyName = 'tagList';
 
 const tagStore = {
     tagList: [] as Tag[],
     fetchTags() {
-        this.tagList = JSON.parse(window.localStorage.getItem(localStorageKeyName) || "[]");
+        this.tagList = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
         return this.tagList;
     },
     findTag(id: string) {
@@ -14,9 +14,9 @@ const tagStore = {
     createTag(name: string) {
         const names = this.tagList.map(item => item.name);
         if (names.indexOf(name) >= 0) {
-            window.alert('标签名重复');
+            window.alert('标签名重复了');
             return 'duplicated';
-        };
+        }
         const id = createId().toString();
         this.tagList.push({ id, name: name });
         this.saveTags();
@@ -50,17 +50,12 @@ const tagStore = {
         } else {
             return 'not found';
         }
-
     },
     saveTags() {
-        window.localStorage.setItem("localStorageKeyName", JSON.stringify(this.tagList));
-    },
-
-}
+        window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.tagList));
+    }
+};
 
 tagStore.fetchTags();
 
 export default tagStore;
-
-
-
