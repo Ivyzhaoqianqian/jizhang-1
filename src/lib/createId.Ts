@@ -7,4 +7,3 @@ function createId() {
 }
 
 export default createId;
-
